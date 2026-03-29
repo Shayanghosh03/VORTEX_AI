@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/main.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="grid-bg"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+
+      <div class="topbar">
+        <div class="logo">
+          <img src="/images/vortex_logo.png" alt="VORTEX AI logo" class="logo-img" />
+          <div>
+            <div class="logo-text">VORTEX AI</div>
+            <div class="logo-sub">Predictive damage intelligence</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="/" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Dashboard</a>
+          <a href="/risk-map" class="<%= activePage === 'risk-map' ? 'active' : '' %>">Risk Map</a>
+          <a href="/forecasts" class="<%= activePage === 'forecasts' ? 'active' : '' %>">Forecasts</a>
+          <a href="/response" class="<%= activePage === 'response' ? 'active' : '' %>">Response</a>
+          <a href="/reports" class="<%= activePage === 'reports' ? 'active' : '' %>">Reports</a>
+        </div>
+        <div class="topbar-right">
+          <div class="status-dot">
+            <div class="dot"></div>
+            Live monitoring
+          </div>
+          <% if (!currentUser) { %>
+            <a href="/login" class="topbar-login">Log in</a>
+          <% } else { %>
+            <form method="post" action="/logout" class="topbar-logout">
+              <span class="topbar-user"><%= currentUser.name %></span>
+              <button type="submit" class="topbar-login">Log out</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="left-panel panel-animate">
+          <div class="alert-badge">
+            <div class="dot"></div>
+            REPORTS — SHAREABLE INSIGHTS
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-1">Publish evidence.</span>
+            <span class="hero-line hero-line-2 accent">Not spreadsheets.</span>
+            <span class="hero-line hero-line-3">One-click briefs & dashboards<span class="accent2">.</span></span>
+          </h1>
+          <p class="subtitle subtitle-animated">
+            GENERATE AGENCY-READY BRIEFS, INSURER PACKS AND EXEC DASHBOARDS,
+            ALL LINKED BACK TO GEOREFERENCED DAMAGE EVIDENCE.
+          </p>
+          <div class="cta-row">
+            <a href="/reports/new" class="btn-primary">Create New Report</a>
+            <a href="/reports/exports" class="btn-secondary">View All Exports</a>
+          </div>
+        </div>
+        <div class="right-panel panel-animate-delayed">
+          <div class="map-container mini-panel">
+            <div class="data-card">
+              <div class="data-card-header">· Recent reports ·</div>
+              <div class="data-row">
+                <span class="data-key">Cyclone Mocha — After Action</span>
+                <span class="data-val">PDF</span>
+              </div>
+              <div class="data-row">
+                <span class="data-key">Coastal flood — Loss model</span>
+                <span class="data-val">XLSX</span>
+              </div>
+              <div class="data-row">
+                <span class="data-key">Multi-event portfolio risk</span>
+                <span class="data-val">Dashboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

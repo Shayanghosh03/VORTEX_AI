@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/main.js" defer></script>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="nav__brand">
+        <img src="/images/vortex_logo.png" alt="VORTEX AI logo" class="logo-img" />
+        <span>VORTEX AI</span>
+      </div>
+      <nav class="nav__links">
+        <a href="/">Home</a>
+        <a href="/login" class="nav__cta">Log in</a>
+      </nav>
+    </header>
+
+    <main class="auth-main">
+      <section class="section auth-card">
+        <div class="section__header">
+          <h2>Create your account</h2>
+          <p>Set up secure access for your response team.</p>
+        </div>
+
+        <% if (error) { %>
+          <div class="auth-error"><%= error %></div>
+        <% } %>
+
+        <form method="post" action="/signup" class="contact-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Work email</label>
+              <input id="email" name="email" type="email" placeholder="you@organization.org" required />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="••••••••" minlength="6" required />
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">Create account</button>
+        </form>
+
+        <div class="auth-divider">or</div>
+
+        <a href="/auth/google" class="auth-google-btn">
+          <span class="auth-google-icon" aria-hidden="true">
+            <img src="/images/googlelogo.png" alt="Google logo" />
+          </span>
+          <span class="auth-google-text">Continue with Google</span>
+        </a>
+
+        <p class="auth-switch">
+          Already have an account?
+          <a href="/login">Log in</a>
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>&copy; <%= new Date().getFullYear() %> Vortex AI.</span>
+      <span>Disaster damage analysis platform.</span>
+    </footer>
+  </body>
+</html>

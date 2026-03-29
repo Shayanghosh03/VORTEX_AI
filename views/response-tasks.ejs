@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/main.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="grid-bg"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+
+      <div class="topbar">
+        <div class="logo">
+          <img src="/images/vortex_logo.png" alt="VORTEX AI logo" class="logo-img" />
+          <div>
+            <div class="logo-text">VORTEX AI</div>
+            <div class="logo-sub">Predictive damage intelligence</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="/" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Dashboard</a>
+          <a href="/risk-map" class="<%= activePage === 'risk-map' ? 'active' : '' %>">Risk Map</a>
+          <a href="/forecasts" class="<%= activePage === 'forecasts' ? 'active' : '' %>">Forecasts</a>
+          <a href="/response" class="<%= activePage === 'response' ? 'active' : '' %>">Response</a>
+          <a href="/reports" class="<%= activePage === 'reports' ? 'active' : '' %>">Reports</a>
+        </div>
+        <div class="topbar-right">
+          <div class="status-dot">
+            <div class="dot"></div>
+            Live monitoring
+          </div>
+          <% if (!currentUser) { %>
+            <a href="/login" class="topbar-login">Log in</a>
+          <% } else { %>
+            <form method="post" action="/logout" class="topbar-logout">
+              <span class="topbar-user"><%= currentUser.name %></span>
+              <button type="submit" class="topbar-login">Log out</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="hero response-tasks">
+        <div class="left-panel panel-animate">
+          <div class="alert-badge">
+            <div class="dot"></div>
+            RESPONSE — TASK QUEUE
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-1">Task queue view.</span>
+            <span class="hero-line hero-line-2 accent">Every ticket, every team.</span>
+            <span class="hero-line hero-line-3">No request left behind<span class="accent2">.</span></span>
+          </h1>
+          <p class="subtitle subtitle-animated">
+            SEE ALL OPEN TASKS ACROSS INCIDENTS, ASSIGNED TEAMS AND STATUS.
+            IDEAL FOR DUTY OFFICERS MANAGING WORKLOAD IN REAL TIME.
+          </p>
+          <div class="cta-row">
+            <a href="/response" class="btn-secondary">Back to Response overview</a>
+          </div>
+        </div>
+        <div class="right-panel panel-animate-delayed">
+          <div class="console-panel">
+            <div class="console-header">
+              <span>Task queue</span>
+              <span class="console-status">SORTED BY PRIORITY</span>
+            </div>
+            <div class="console-filters">
+              <button class="console-chip console-chip--active">All</button>
+              <button class="console-chip">Unassigned</button>
+              <button class="console-chip">In progress</button>
+              <button class="console-chip">Completed</button>
+            </div>
+            <div class="console-table">
+              <div class="console-row console-row--head">
+                <span>Task</span>
+                <span>Incident</span>
+                <span>Assigned to</span>
+                <span>ETA</span>
+                <span>Status</span>
+              </div>
+              <div class="console-row">
+                <span>Set up mobile triage</span>
+                <span>#C-214 · Delta-3</span>
+                <span>MED-02</span>
+                <span>00:25</span>
+                <span class="status-pill status-pill--critical">URGENT</span>
+              </div>
+              <div class="console-row">
+                <span>Deploy sandbags to bridge</span>
+                <span>#F-088 · Bridge North</span>
+                <span>ENG-07</span>
+                <span>00:40</span>
+                <span class="status-pill status-pill--high">HIGH</span>
+              </div>
+              <div class="console-row">
+                <span>Check power substation</span>
+                <span>#L-032 · Sector 7</span>
+                <span>UTIL-03</span>
+                <span>01:10</span>
+                <span class="status-pill status-pill--med">IN PROGRESS</span>
+              </div>
+              <div class="console-row">
+                <span>Confirm shelter capacity</span>
+                <span>#C-221 · Coastal ring</span>
+                <span>OPS-01</span>
+                <span>DONE</span>
+                <span class="status-pill status-pill--low">COMPLETED</span>
+              </div>
+            </div>
+            <div class="console-footer">
+              <span>Showing 4 of 42 queued tasks — demo data only.</span>
+              <button class="btn-secondary btn-secondary--small" type="button">Export task queue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

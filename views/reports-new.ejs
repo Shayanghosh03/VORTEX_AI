@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/main.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="grid-bg"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+
+      <div class="topbar">
+        <div class="logo">
+          <img src="/images/vortex_logo.png" alt="VORTEX AI logo" class="logo-img" />
+          <div>
+            <div class="logo-text">VORTEX AI</div>
+            <div class="logo-sub">Predictive damage intelligence</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="/" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Dashboard</a>
+          <a href="/risk-map" class="<%= activePage === 'risk-map' ? 'active' : '' %>">Risk Map</a>
+          <a href="/forecasts" class="<%= activePage === 'forecasts' ? 'active' : '' %>">Forecasts</a>
+          <a href="/response" class="<%= activePage === 'response' ? 'active' : '' %>">Response</a>
+          <a href="/reports" class="<%= activePage === 'reports' ? 'active' : '' %>">Reports</a>
+        </div>
+        <div class="topbar-right">
+          <div class="status-dot">
+            <div class="dot"></div>
+            Live monitoring
+          </div>
+          <% if (!currentUser) { %>
+            <a href="/login" class="topbar-login">Log in</a>
+          <% } else { %>
+            <form method="post" action="/logout" class="topbar-logout">
+              <span class="topbar-user"><%= currentUser.name %></span>
+              <button type="submit" class="topbar-login">Log out</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="hero reports-new">
+        <div class="left-panel panel-animate">
+          <div class="alert-badge">
+            <div class="dot"></div>
+            REPORTS — NEW BRIEF
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-1">Create a new report.</span>
+            <span class="hero-line hero-line-2 accent">Ingest, select, export.</span>
+            <span class="hero-line hero-line-3">One pipeline, many outputs<span class="accent2">.</span></span>
+          </h1>
+          <p class="subtitle subtitle-animated">
+            CHOOSE INCIDENT, REGION, TIME WINDOW AND OUTPUT FORMAT.
+            VORTEX AI BUILDS A SHAREABLE BRIEF READY FOR STAKEHOLDERS.
+          </p>
+          <div class="cta-row">
+            <a href="/reports" class="btn-secondary">Back to Reports</a>
+          </div>
+        </div>
+        <div class="right-panel panel-animate-delayed">
+          <div class="reports-form-panel">
+            <form method="post" action="/reports/new">
+              <div class="reports-form-row">
+                <div class="reports-form-field">
+                  <label for="reportTitle">Report title</label>
+                  <input type="text" id="reportTitle" name="title" placeholder="Cyclone Mocha — After Action" required />
+                </div>
+                <div class="reports-form-field">
+                  <label for="reportIncident">Incident</label>
+                  <select id="reportIncident" name="incident">
+                    <option value="mocha">Cyclone Mocha · 2023</option>
+                    <option value="coastal_flood">Coastal flooding · demo</option>
+                    <option value="multi_event">Multi-event portfolio</option>
+                  </select>
+                </div>
+              </div>
+              <div class="reports-form-row">
+                <div class="reports-form-field">
+                  <label for="reportRegion">Region focus</label>
+                  <input type="text" id="reportRegion" name="region" placeholder="Bay of Bengal coastal ring" />
+                </div>
+                <div class="reports-form-field">
+                  <label for="reportWindow">Time window</label>
+                  <select id="reportWindow" name="window">
+                    <option value="24h">Last 24 hours</option>
+                    <option value="72h">Last 72 hours</option>
+                    <option value="event">Entire event</option>
+                  </select>
+                </div>
+              </div>
+              <div class="reports-form-row">
+                <div class="reports-form-field">
+                  <label for="reportFormat">Output format</label>
+                  <select id="reportFormat" name="format">
+                    <option value="pdf">PDF brief</option>
+                    <option value="xlsx">XLSX loss model</option>
+                    <option value="json">JSON export</option>
+                  </select>
+                </div>
+                <div class="reports-form-field">
+                  <label for="reportAudience">Audience</label>
+                  <select id="reportAudience" name="audience">
+                    <option value="agency">Government agency</option>
+                    <option value="insurer">Insurer / reinsurer</option>
+                    <option value="exec">Executive leadership</option>
+                  </select>
+                </div>
+              </div>
+              <div class="reports-form-field">
+                <label for="reportNotes">Key notes / highlights</label>
+                <textarea id="reportNotes" name="notes" rows="3" placeholder="Add key findings, operational notes or recommendations..."></textarea>
+              </div>
+              <div class="reports-form-actions">
+                <button class="btn-primary" type="submit">Generate report</button>
+                <span class="reports-form-hint">Demo only — generates a sample export payload.</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

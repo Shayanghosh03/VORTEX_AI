@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/main.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="grid-bg"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+
+      <div class="topbar">
+        <div class="logo">
+          <img src="/images/vortex_logo.png" alt="VORTEX AI logo" class="logo-img" />
+          <div>
+            <div class="logo-text">VORTEX AI</div>
+            <div class="logo-sub">Predictive damage intelligence</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="/" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Dashboard</a>
+          <a href="/risk-map" class="<%= activePage === 'risk-map' ? 'active' : '' %>">Risk Map</a>
+          <a href="/forecasts" class="<%= activePage === 'forecasts' ? 'active' : '' %>">Forecasts</a>
+          <a href="/response" class="<%= activePage === 'response' ? 'active' : '' %>">Response</a>
+          <a href="/reports" class="<%= activePage === 'reports' ? 'active' : '' %>">Reports</a>
+        </div>
+        <div class="topbar-right">
+          <div class="status-dot">
+            <div class="dot"></div>
+            Live monitoring
+          </div>
+          <% if (!currentUser) { %>
+            <a href="/login" class="topbar-login">Log in</a>
+          <% } else { %>
+            <form method="post" action="/logout" class="topbar-logout">
+              <span class="topbar-user"><%= currentUser.name %></span>
+              <button type="submit" class="topbar-login">Log out</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="hero response-console">
+        <div class="left-panel panel-animate">
+          <div class="alert-badge">
+            <div class="dot"></div>
+            RESPONSE CONSOLE — ACTIVE INCIDENTS
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-1">Live tasking console.</span>
+            <span class="hero-line hero-line-2 accent">Command every team.</span>
+            <span class="hero-line hero-line-3">Zero in on bottlenecks<span class="accent2">.</span></span>
+          </h1>
+          <p class="subtitle subtitle-animated">
+            FILTER INCIDENTS, UPDATE STATUSES AND PUSH PLAYBOOK ACTIONS LIVE TO
+            FIELD TEAMS. OPTIMIZED FOR RAPID, HIGH-STRESS OPERATIONS.
+          </p>
+          <div class="cta-row">
+            <a href="/response" class="btn-secondary">Back to Response overview</a>
+          </div>
+        </div>
+        <div class="right-panel panel-animate-delayed">
+          <div class="console-panel">
+            <div class="console-header">
+              <span>Incident stream</span>
+              <span class="console-status">AUTO-REFRESH: 30s</span>
+            </div>
+            <div class="console-filters">
+              <button class="console-chip console-chip--active">All</button>
+              <button class="console-chip">Critical</button>
+              <button class="console-chip">High</button>
+              <button class="console-chip">Medium</button>
+            </div>
+            <div class="console-table">
+              <div class="console-row console-row--head">
+                <span>ID</span>
+                <span>Zone</span>
+                <span>Type</span>
+                <span>Teams</span>
+                <span>Status</span>
+              </div>
+              <div class="console-row">
+                <span>#C-214</span>
+                <span>Delta-3</span>
+                <span>Cyclone surge</span>
+                <span>4 deployed</span>
+                <span class="status-pill status-pill--critical">CRITICAL</span>
+              </div>
+              <div class="console-row">
+                <span>#F-088</span>
+                <span>Bridge North</span>
+                <span>Flooding</span>
+                <span>2 en route</span>
+                <span class="status-pill status-pill--high">HIGH</span>
+              </div>
+              <div class="console-row">
+                <span>#L-032</span>
+                <span>Sector 7</span>
+                <span>Landslide</span>
+                <span>1 staging</span>
+                <span class="status-pill status-pill--med">MEDIUM</span>
+              </div>
+              <div class="console-row">
+                <span>#C-221</span>
+                <span>Coastal ring</span>
+                <span>Cyclone wind</span>
+                <span>3 cleared</span>
+                <span class="status-pill status-pill--low">CLEARED</span>
+              </div>
+            </div>
+            <div class="console-footer">
+              <span>Showing 4 of 27 active incidents — demo data only.</span>
+              <a href="/response-export" target="_blank" class="btn-secondary btn-secondary--small">Export tasking log</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/main.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="grid-bg"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+      <div class="scan-ring"></div>
+
+      <div class="topbar">
+        <div class="logo">
+          <img src="/images/vortex_logo.png" alt="VORTEX AI logo" class="logo-img" />
+          <div>
+            <div class="logo-text">VORTEX AI</div>
+            <div class="logo-sub">Predictive damage intelligence</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="/" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Dashboard</a>
+          <a href="/risk-map" class="<%= activePage === 'risk-map' ? 'active' : '' %>">Risk Map</a>
+          <a href="/forecasts" class="<%= activePage === 'forecasts' ? 'active' : '' %>">Forecasts</a>
+          <a href="/response" class="<%= activePage === 'response' ? 'active' : '' %>">Response</a>
+          <a href="/reports" class="<%= activePage === 'reports' ? 'active' : '' %>">Reports</a>
+        </div>
+        <div class="topbar-right">
+          <div class="status-dot">
+            <div class="dot"></div>
+            Live monitoring
+          </div>
+          <% if (!currentUser) { %>
+            <a href="/login" class="topbar-login">Log in</a>
+          <% } else { %>
+            <form method="post" action="/logout" class="topbar-logout">
+              <span class="topbar-user"><%= currentUser.name %></span>
+              <button type="submit" class="topbar-login">Log out</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="hero reports-exports">
+        <div class="left-panel panel-animate">
+          <div class="alert-badge">
+            <div class="dot"></div>
+            REPORTS — ALL EXPORTS
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-1">All generated exports.</span>
+            <span class="hero-line hero-line-2 accent">Find and download fast.</span>
+            <span class="hero-line hero-line-3">Evidence at your fingertips<span class="accent2">.</span></span>
+          </h1>
+          <p class="subtitle subtitle-animated">
+            BROWSE RECENTLY GENERATED REPORTS ACROSS INCIDENTS AND FORMATS.
+            USE THIS VIEW AS A SIMPLE DOWNLOAD HUB FOR STAKEHOLDERS.
+          </p>
+          <div class="cta-row">
+            <a href="/reports" class="btn-secondary">Back to Reports</a>
+          </div>
+        </div>
+        <div class="right-panel panel-animate-delayed">
+          <div class="console-panel">
+            <div class="console-header">
+              <span>Export history</span>
+              <span class="console-status">DEMO DATA ONLY</span>
+            </div>
+            <div class="console-table">
+              <div class="console-row console-row--head">
+                <span>Report</span>
+                <span>Incident</span>
+                <span>Format</span>
+                <span>Generated</span>
+                <span>Action</span>
+              </div>
+              <div class="console-row">
+                <span>Cyclone Mocha — After Action</span>
+                <span>Cyclone Mocha · 2023</span>
+                <span>PDF brief</span>
+                <span>T-2 days</span>
+                <span><a href="/forecasts/download">Download</a></span>
+              </div>
+              <div class="console-row">
+                <span>Coastal flood — Loss model</span>
+                <span>Coastal flooding · demo</span>
+                <span>XLSX loss model</span>
+                <span>T-4 days</span>
+                <span><a href="/forecasts/download">Download</a></span>
+              </div>
+              <div class="console-row">
+                <span>Multi-event portfolio risk</span>
+                <span>Multi-event portfolio</span>
+                <span>JSON export</span>
+                <span>T-7 days</span>
+                <span><a href="/forecasts/download">Download</a></span>
+              </div>
+            </div>
+            <div class="console-footer">
+              <span>Static demo list — wire to real exports later.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>
