@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="icon" type="favicon" href="../public/images/geonex_logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="/javascripts/main.js" defer></script>
   </head>
   <body>
@@ -20,14 +22,14 @@
       <!-- Top navigation -->
       <div class="topbar">
         <div class="logo">
-          <img src="/images/vortex_logo.png" alt="VORTEX AI logo" class="logo-img" />
+          <img src="/images/geonex_logo.png" alt="Geonex AI logo" class="logo-img" />
           <div>
-            <div class="logo-text">VORTEX AI</div>
+            <div class="logo-text">Geonex AI</div>
             <div class="logo-sub">Predictive damage intelligence</div>
           </div>
         </div>
         <div class="nav-links">
-          <a href="/" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Dashboard</a>
+          <a href="/" class="<%= activePage === 'dashboard' ? 'active' : '' %>"> Dashboard</a>
           <a href="/risk-map" class="<%= activePage === 'risk-map' ? 'active' : '' %>">Risk Map</a>
           <a href="/forecasts" class="<%= activePage === 'forecasts' ? 'active' : '' %>">Forecasts</a>
           <a href="/response" class="<%= activePage === 'response' ? 'active' : '' %>">Response</a>
@@ -36,14 +38,14 @@
         <div class="topbar-right">
           <div class="status-dot">
             <div class="dot"></div>
-            Live monitoring
+             Live
           </div>
           <% if (!currentUser) { %>
             <a href="/login" class="topbar-login">Log in</a>
           <% } else { %>
             <form method="post" action="/logout" class="topbar-logout">
-              <span class="topbar-user"><%= currentUser.name %></span>
-              <button type="submit" class="topbar-login">Log out</button>
+              <span class="topbar-user"> <i class="fa-regular fa-user"></i> <%= currentUser.name %></span>
+              <button type="submit" class="topbar-login">Log out <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
             </form>
           <% } %>
         </div>
@@ -78,12 +80,12 @@
             <span class="hero-line hero-line-3">Protect<span class="accent2">.</span></span>
           </h1>
           <p class="subtitle subtitle-animated">
-            REAL-TIME DISASTER DAMAGE FORECASTING — <br />
-            TURN SATELLITE, DRONE & SENSOR DATA INTO ACTIONABLE RESPONSE PLANS
+            REAL-TIME DISASTER DAMAGE FORECASTING <br />
+            TURN SATELLITE, DRONE & SENSOR DATA INTO ACTIONABLE RESPONSE PLANS.
           </p>
           <div class="cta-row">
             <a href="/damage-model" class="btn-primary">Run Damage Model</a>
-            <a href="/risk-map" class="btn-secondary">View Risk Map</a>
+            <a href="/risk-map" class="btn-secondary"> <i class="fa-regular fa-map"></i>View Risk Map</a>
           </div>
           <div class="stats-row">
             <div class="stat">
@@ -224,7 +226,7 @@
                 <div class="bar-label"><span>Structural risk index</span><span>HIGH</span></div>
                 <div class="bar-track"><div class="bar-fill" style="width: 78%; background: #ff4030;"></div></div>
                 <div class="bar-label"><span>Flood exposure</span><span>CRITICAL</span></div>
-                <div class="bar-track"><div class="bar-fill" style="width: 91%; background: #ff6020;"></div></div>
+                <div class="bar-track"><div class="bar-fill" style="width: 91%; background: #a855f7;"></div></div>
                 <div class="bar-label"><span>Response readiness</span><span>MED</span></div>
                 <div class="bar-track"><div class="bar-fill" style="width: 52%; background: #ffa030;"></div></div>
               </div>

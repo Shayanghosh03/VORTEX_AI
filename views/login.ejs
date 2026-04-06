@@ -10,8 +10,8 @@
   <body>
     <header class="nav">
       <div class="nav__brand">
-        <img src="/images/vortex_logo.png" alt="VORTEX AI logo" class="logo-img" />
-        <span>VORTEX AI</span>
+        <img src="/images/geonex_logo.png" alt="Geonex AI logo" class="logo-img" />
+        <span>Geonex AI</span>
       </div>
       <nav class="nav__links">
         <a href="/">Home</a>
@@ -22,8 +22,9 @@
     <main class="auth-main">
       <section class="section auth-card">
         <div class="section__header">
-          <h2>Log in</h2>
-          <p>Access your disaster analysis workspace.</p>
+          <h2>Login</h2>
+          <p>Welcome back! Please enter your details.</p>
+      
         </div>
 
         <% if (error) { %>
@@ -32,7 +33,7 @@
 
         <form method="post" action="/login" class="contact-form">
           <div class="form-field">
-            <label for="email">Work email</label>
+            <label for="email">Email</label>
             <input id="email" name="email" type="email" placeholder="you@organization.org" required />
           </div>
           <div class="form-field">
@@ -52,15 +53,15 @@
         </a>
 
         <p class="auth-switch">
-          New to Vortex AI?
+          New to Geonex AI?
           <a href="/signup">Create an account</a>
         </p>
       </section>
     </main>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
       <span>&copy; <%= new Date().getFullYear() %> Vortex AI.</span>
       <span>Disaster damage analysis platform.</span>
-    </footer>
+    </footer> -->
   </body>
 </html>
