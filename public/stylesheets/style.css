@@ -996,6 +996,16 @@ body {
   width: 34px;
   height: 34px;
   object-fit: cover;
+  animation: rotateLogo 4s linear infinite;
+}
+
+@keyframes rotateLogo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .logo-text {
@@ -1126,10 +1136,13 @@ body {
   border-radius: 10px;
   font-family: "Share Tech Mono", monospace;
   font-size: 10px;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   color: #ff6040;
   margin-bottom: 20px;
   width: fit-content;
+}
+.alert-badge span {
+  color: #a9a9ac;
 }
 
 .alert-badge .dot {
@@ -1146,6 +1159,16 @@ h1 {
   letter-spacing: 1px;
   color: #ffffff;
   margin-bottom: 8px;
+}
+
+.live-time {
+  text-align: center;
+  width: 80px;
+  color: rgba(200, 220, 240, 0.7);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
 }
 
 .hero-title {
@@ -1725,5 +1748,61 @@ h1 .accent2 {
 
   .live-risk-map__header p {
     font-size: 12px;
+  }
+
+  /* ------------------------------------------------------------------------- */
+  .user-menu {
+    position: relative;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    background: #14cf93;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .user-dropdown {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 220px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    display: none;
+    z-index: 100;
+  }
+
+  .user-dropdown.active {
+    display: block;
+  }
+
+  .user-info h4 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .user-info p {
+    margin: 5px 0 10px;
+    font-size: 13px;
+    color: gray;
+  }
+
+  .logout-btn {
+    width: 100%;
+    padding: 8px;
+    background: #ff4d4d;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
   }
 }
