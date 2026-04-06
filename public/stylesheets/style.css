@@ -1248,6 +1248,9 @@ h1 .accent2 {
   /* background: #ff5545; */
   transform: scale(1.04);
 }
+.btn-primary i {
+  margin-right: 4px;
+}
 
 .btn-secondary {
   background: transparent;

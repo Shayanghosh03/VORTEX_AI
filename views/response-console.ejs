@@ -1,51 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/geonex_logo.png" />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <script src="/javascripts/main.js" defer></script>
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="grid-bg"></div>
-      <div class="scan-ring"></div>
-      <div class="scan-ring"></div>
-      <div class="scan-ring"></div>
-      <div class="scan-ring"></div>
 
-      <div class="topbar">
-        <div class="logo">
-          <img src="/images/vortex_logo.png" alt="VORTEX AI logo" class="logo-img" />
-          <div>
-            <div class="logo-text">VORTEX AI</div>
-            <div class="logo-sub">Predictive damage intelligence</div>
-          </div>
-        </div>
-        <div class="nav-links">
-          <a href="/" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Dashboard</a>
-          <a href="/risk-map" class="<%= activePage === 'risk-map' ? 'active' : '' %>">Risk Map</a>
-          <a href="/forecasts" class="<%= activePage === 'forecasts' ? 'active' : '' %>">Forecasts</a>
-          <a href="/response" class="<%= activePage === 'response' ? 'active' : '' %>">Response</a>
-          <a href="/reports" class="<%= activePage === 'reports' ? 'active' : '' %>">Reports</a>
-        </div>
-        <div class="topbar-right">
-          <div class="status-dot">
-            <div class="dot"></div>
-            Live 
-          </div>
-          <% if (!currentUser) { %>
-            <a href="/login" class="topbar-login">Log in</a>
-          <% } else { %>
-            <form method="post" action="/logout" class="topbar-logout">
-              <span class="topbar-user"><%= currentUser.name %></span>
-              <button type="submit" class="topbar-login">Log out</button>
-            </form>
-          <% } %>
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= title %>
+  </title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/geonex_logo.png" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <script src="/javascripts/main.js" defer></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="grid-bg"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+
+    <%- include('partials/Navbar', { activePage: 'response' , currentUser }) %>
 
       <div class="hero response-console">
         <div class="left-panel panel-animate">
@@ -117,11 +92,13 @@
             </div>
             <div class="console-footer">
               <span>Showing 4 of 27 active incidents — demo data only.</span>
-              <a href="/response-export" target="_blank" class="btn-secondary btn-secondary--small">Export tasking log</a>
+              <a href="/response-export" target="_blank" class="btn-secondary btn-secondary--small">Export tasking
+                log</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </body>
-  </html>
+  </div>
+</body>
+
+</html>
