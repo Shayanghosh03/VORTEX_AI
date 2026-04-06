@@ -1,8 +1,13 @@
 # VORTEX AI Web
-<img width="1919" height="865" alt="Image" src="https://github.com/user-attachments/assets/fb646a5b-0e1f-409e-b7c6-a3eea9fc863a" />
+
+![Geonex UI](./public/images/ui.png)
+
+<!-- <img width="1919" height="865" alt="Image" src="https://github.com/user-attachments/assets/fb646a5b-0e1f-409e-b7c6-a3eea9fc863a" /> -->
+
 VORTEX AI Web is a disaster damage analysis and risk intelligence dashboard. It combines a Node.js/Express web application with a Python/Flask machine‑learning microservice to estimate multi‑hazard risk (cyclone, flood, earthquake, landslide) for a given scenario and location.
 
 The web app provides:
+
 - A damage model console that scores risk based on hazard type and scenario inputs
 - Optional live geo‑tagging via browser GPS for location‑aware predictions
 - A risk map and forecast views for situational awareness
@@ -13,12 +18,14 @@ The web app provides:
 ## Architecture
 
 **Web application (Node.js / Express)**
+
 - Serves the UI using EJS templates (views/)
 - Handles routing, forms, and session‑based authentication
 - Persists users in MongoDB via Mongoose
 - Calls the Python ML service over HTTP to refine risk estimates when latitude/longitude are available
 
 **ML microservice (Python / Flask)**
+
 - Lives in `mlmodel/app.py`
 - Loads pre‑trained models for:
   - Earthquake damage classification (`earthquake_xgb_model.pkl`)
@@ -184,7 +191,7 @@ The high‑level endpoint used by the Node app is `POST /predict` on the Flask s
   "hour": 14,
   "day": 29,
   "month": 3,
-  "hazardType": "cyclone"  // optional
+  "hazardType": "cyclone" // optional
 }
 ```
 
