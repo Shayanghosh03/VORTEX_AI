@@ -1,4 +1,27 @@
-node_modules
+# Cleaned up:
+# - disaster_damage_prediction_hero.html (unused, not referenced in any route or view)
+# - mlmodel/.ipynb_checkpoints/ (auto-generated Jupyter cache, 2 checkpoint files)
+
+# Dependencies
+node_modules/
+
+# Environment variables
 .env
+
+# Logs
+*.log
 npm-debug.log*
-yarn-error.log*
+
+# OS artifacts
+.DS_Store
+thumbs.db
+Thumbs.db
+
+# ML model binaries (large binary files, not for version control)
+mlmodel/*.pkl
+
+# User uploads
+public/uploads/
+
+# Jupyter checkpoints
+**/.ipynb_checkpoints/

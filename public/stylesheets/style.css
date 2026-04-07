@@ -825,8 +825,10 @@ body.page-leave {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 6vw 0;
+  padding: 14px 24px;
   font-family: "Share Tech Mono", monospace;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .nav__brand {
@@ -834,21 +836,26 @@ body.page-leave {
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: #ffffff;
+  flex-shrink: 0;
 }
 
 .nav__links {
   display: flex;
-  gap: 18px;
-  font-size: 11px;
-  letter-spacing: 2px;
+  align-items: center;
+  gap: 20px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  flex-wrap: nowrap;
+  margin-left: auto;
 }
 
 .nav__links a {
   color: rgba(200, 220, 240, 0.7);
+  white-space: nowrap;
 }
 
 .nav__links a:hover {

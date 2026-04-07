@@ -6,7 +6,6 @@ GeoNex AI Web is a disaster damage analysis and risk intelligence dashboard. It 
 The web app provides:
 
 - A damage model console that scores risk based on hazard type and scenario inputs
-- and give data about the safe location.
 - Optional live geo‑tagging via browser GPS for location‑aware predictions
 - A risk map and forecast views for situational awareness
 - User authentication (email/password + optional Google OAuth) backed by MongoDB
