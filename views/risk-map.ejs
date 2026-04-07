@@ -29,7 +29,7 @@
     <%- include('partials/Navbar', { activePage: 'risk-map' , currentUser }) %>
 
 
-      <div class="hero">
+      <div class="hero risk-hero">
         <div class="left-panel panel-animate">
           <div class="alert-badge">
             <div class="dot"></div>
@@ -49,8 +49,8 @@
             <button class="btn-secondary" id="configure-layers">Configure Layers</button>
           </div>
         </div>
-        <div class="right-panel panel-animate-delayed">
-          <div class="map-container mini-panel">
+        <div class="right-panel risk-right panel-animate-delayed">
+          <div class="map-container mini-panel risk-map-panel">
             <!-- static preview still uses stylized svg map -->
             <%- include('partials/map-svg'); %>
           </div>

@@ -985,6 +985,9 @@ body {
   border-bottom: 1px solid rgba(0, 180, 255, 0.15);
   background: rgba(8, 12, 20, 0.8);
 }
+.topbar .hamburger {
+  display: none;
+}
 
 .logo {
   display: flex;
@@ -1163,7 +1166,7 @@ h1 {
 
 .live-time {
   text-align: center;
-  width: 80px;
+  width: 85px;
   color: rgba(200, 220, 240, 0.7);
   font-weight: 400;
   font-size: 12px;
@@ -1546,6 +1549,11 @@ h1 .accent2 {
   animation: barGrow 1.5s ease-out forwards;
   transform-origin: left;
 }
+.footer {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 0;
+}
 
 @keyframes barGrow {
   from {
@@ -1712,13 +1720,64 @@ h1 .accent2 {
   }
 }
 
+/* ------------ Nav Responsive */
 @media (max-width: 480px) {
   .topbar {
+    height: 8vh;
     padding-inline: 10px;
+    padding: 1.5vh 10px;
+  }
+  .topbar .logo-sub {
+    letter-spacing: normal;
+    font-size: 2.4vw;
+  }
+  .logo-text {
+    font-size: 5.5vw;
+    letter-spacing: 1.5px;
+  }
+
+  .topbar .hamburger {
+    display: inline;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 6vw;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 40%;
+    background: #050a14;
+    border-radius: 18px;
+    flex-direction: column;
+    /* display: none; */
+    padding: 20px 10px;
+    gap: 2vw;
+    z-index: 15;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 16px;
   }
 
   .nav-links {
     gap: 10px;
+    display: none;
+  }
+  .left-panel {
+    padding: 22px 0;
+  }
+
+  .topbar-right {
+    display: none;
   }
 
   .ticker-inner {
@@ -1726,28 +1785,130 @@ h1 .accent2 {
   }
 
   .hero {
-    padding-top: 18px;
+    padding-top: 0;
+  }
+
+  .alert-badge {
+    margin-bottom: 0;
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 16vw;
   }
 
   .stats-row {
-    flex-direction: column;
-    align-items: flex-start;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .auth-card {
     padding: 20px 18px 22px;
   }
 
+  .live-risk-map {
+    padding: 0;
+    border-top: 1px solid rgba(0, 180, 255, 0.18);
+  }
+  .live-risk-map__header {
+    padding: 20px 4vw;
+  }
+
+  .live-prediction-card {
+    margin: 20px 3vw;
+  }
   .live-risk-map__header h2 {
-    font-size: 18px;
+    font-size: 4vw;
   }
 
   .live-risk-map__header p {
-    font-size: 12px;
+    font-size: 3vw;
+  }
+
+  .live-prediction-card__left .live-prediction-title {
+    /* max-width: 320px; */
+    font-size: 4vw;
+  }
+  .live-prediction-card__left .live-prediction-sub {
+    /* max-width: 320px; */
+    font-size: 3.2vw;
+    gap: 5vw;
+  }
+
+  .live-prediction-card__right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+
+  .map-container {
+    min-height: 450px;
+    /* display: none; */
+  }
+
+  .damage-subtitle-p {
+    font-size: 3.2vw;
+    margin: 2vh;
+  }
+  #damage-map-view {
+    height: 46vh;
+    border-radius: 0;
+  }
+  .damage-map-header {
+    font-size: 3.5vw;
+    margin: 0 3vw 12px 3vw;
+    color: #0096ff;
+  }
+  .damage-map-legend {
+    font-size: 4.5vw;
+    padding: 2vw 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .data-card {
+    top: 10px;
+    right: 10px;
+    padding: 10px 12px;
+    min-width: 66%;
+    max-width: 100%;
+  }
+
+  .mini-panel {
+    width: 100%;
+    /* display: none; */
+  }
+  .risk-map-panel {
+    display: none;
+  }
+
+  .risk-hero {
+    height: 100vh;
+  }
+  .rish-right {
+    display: none;
+  }
+  #risk-map-view {
+    height: 50vh;
+    border-radius: 8px;
+  }
+  .model-form {
+    right: 0px;
+    max-width: calc(100% - 0px);
+  }
+  .reports-form-panel {
+    margin: 0;
+  }
+
+  .forecast-right-panel {
+    z-index: 20;
+    background: rgba(8, 12, 20, 0.9);
+    padding: 14px 16px;
+    height: 30vh;
+    /* width: "100%"; */
+    border-radius: 2px;
   }
 
   /* ------------------------------------------------------------------------- */
@@ -1804,5 +1965,10 @@ h1 .accent2 {
     color: white;
     border-radius: 6px;
     cursor: pointer;
+  }
+  .footer {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 0;
   }
 }
