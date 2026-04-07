@@ -1,0 +1,51 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [74.0, 34.5], [76.0, 34.5], [78.0, 33.5], [78.5, 32.0],
+          [77.0, 30.5], [75.5, 30.0], [73.5, 31.0], [73.0, 33.0],
+          [74.0, 34.5]
+        ]]
+      },
+      "properties": { "name": "Kashmir–Himachal Seismic Zone V", "zone_level": 5, "risk": "very_high" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [88.0, 27.5], [92.0, 27.5], [93.0, 26.5], [94.0, 26.0],
+          [94.5, 25.0], [93.0, 24.5], [91.0, 25.0], [89.0, 26.0],
+          [88.0, 27.5]
+        ]]
+      },
+      "properties": { "name": "Northeast India Seismic Zone V", "zone_level": 5, "risk": "very_high" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [78.0, 30.5], [80.5, 30.5], [81.0, 29.5], [80.0, 28.5],
+          [78.5, 28.0], [77.0, 28.5], [77.5, 29.5], [78.0, 30.5]
+        ]]
+      },
+      "properties": { "name": "Uttarakhand Seismic Zone IV", "zone_level": 4, "risk": "high" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [69.0, 23.5], [72.0, 23.5], [72.5, 22.5], [71.5, 21.5],
+          [70.0, 21.0], [68.5, 22.0], [69.0, 23.5]
+        ]]
+      },
+      "properties": { "name": "Kutch–Saurashtra Seismic Zone V", "zone_level": 5, "risk": "very_high" }
+    }
+  ]
+}
