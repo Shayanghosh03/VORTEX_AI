@@ -1,11 +1,13 @@
 # VORTEX AI Web
 
 <img width="1919" height="865" alt="Image" src="https://github.com/user-attachments/assets/fb646a5b-0e1f-409e-b7c6-a3eea9fc863a"/>
+
 GeoNex AI Web is a disaster damage analysis and risk intelligence dashboard. It combines a Node.js/Express web application with a Python/Flask machine‑learning microservice to estimate multi‑hazard risk (cyclone, flood, earthquake, landslide) for a given scenario and location.
 
 The web app provides:
 
 - A damage model console that scores risk based on hazard type and scenario inputs
+- and give data about the safe location.
 - Optional live geo‑tagging via browser GPS for location‑aware predictions
 - A risk map and forecast views for situational awareness
 - User authentication (email/password + optional Google OAuth) backed by MongoDB
