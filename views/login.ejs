@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/geonex_logo.png" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/main.js" defer></script>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="nav__brand">
+        <img src="/images/geonex_logo.png" alt="Geonex AI logo" class="logo-img" />
+        <span>Geonex AI</span>
+      </div>
+      <nav class="nav__links">
+        <a href="/">Home</a>
+        <a href="/signup" class="nav__cta">Create account</a>
+      </nav>
+    </header>
+
+    <main class="auth-main">
+      <section class="section auth-card">
+        <div class="section__header">
+          <h2>Login</h2>
+          <p>Welcome back! Please enter your details.</p>
+      
+        </div>
+
+        <% if (error) { %>
+          <div class="auth-error"><%= error %></div>
+        <% } %>
+
+        <form method="post" action="/login" class="contact-form">
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@organization.org" required />
+          </div>
+          <div class="form-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">Continue</button>
+        </form>
+
+        <div class="auth-divider">or</div>
+
+        <a href="/auth/google" class="auth-google-btn">
+          <span class="auth-google-icon" aria-hidden="true">
+            <img src="/images/googlelogo.png" alt="Google logo" />
+          </span>
+          <span class="auth-google-text">Continue with Google</span>
+        </a>
+
+        <p class="auth-switch">
+          New to Geonex AI?
+          <a href="/signup">Create an account</a>
+        </p>
+      </section>
+    </main>
+
+    <!-- <footer class="footer">
+      <span>&copy; <%= new Date().getFullYear() %> Vortex AI.</span>
+      <span>Disaster damage analysis platform.</span>
+    </footer> -->
+  </body>
+</html>

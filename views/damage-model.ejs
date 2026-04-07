@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= title %>
+  </title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/geonex_logo.png" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="/javascripts/main.js" defer></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <script src="/javascripts/damage-model.js" defer></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="grid-bg"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+
+
+    <!-- Navbar -->
+    <%- include('partials/Navbar', { activePage: 'dashboard' , currentUser }) %>
+
+
+      <div class="hero">
+        <div class="left-panel panel-animate">
+          <div class="alert-badge">
+            <div class="dot"></div>
+            DAMAGE MODEL — SCENARIO RUNNER
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-1">Run the model.</span>
+            <span class="hero-line hero-line-2 accent">Quantify the damage.</span>
+            <span class="hero-line hero-line-3">Plan your response<span class="accent2">.</span></span>
+          </h1>
+          <p class="subtitle subtitle-animated">
+            ENTER HAZARD PARAMETERS AND EXPOSURE METRICS. VORTEX AI WILL ESTIMATE
+            DAMAGE RISK AND EXPECTED IMPACT WINDOW.
+          </p>
+        </div>
+        <div class="right-panel panel-animate-delayed">
+          <div class="map-container mini-panel">
+            <form method="post" action="/damage-model" class="model-form">
+              <div class="form-row">
+                <label>Location (auto or manual)</label>
+                <div class="subtitle" id="location-status">
+                  Attempting to detect your live location… or enter coordinates manually.
+                </div>
+                <div class="form-row-inline">
+                  <input type="number" step="any" id="latitude" name="latitude" value="<%= input.latitude || '' %>"
+                    placeholder="Latitude (e.g. 23.8103)" />
+                  <input type="number" step="any" id="longitude" name="longitude" value="<%= input.longitude || '' %>"
+                    placeholder="Longitude (e.g. 90.4125)" />
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="hazardType">Hazard type</label>
+                <select id="hazardType" name="hazardType" required>
+                  <option value="" disabled <%=!input.hazardType ? 'selected' : '' %>>Select hazard</option>
+                  <option value="cyclone" <%=input.hazardType==='cyclone' ? 'selected' : '' %>>Cyclone / Typhoon
+                  </option>
+                  <option value="flood" <%=input.hazardType==='flood' ? 'selected' : '' %>>River / Flash Flood</option>
+                  <option value="earthquake" <%=input.hazardType==='earthquake' ? 'selected' : '' %>>Earthquake</option>
+                  <option value="landslide" <%=input.hazardType==='landslide' ? 'selected' : '' %>>Landslide</option>
+                </select>
+              </div>
+              <!-- Removed wind speed and rainfall fields per user request -->
+              <div class="form-row">
+                <label for="populationDensity">Population density (people / km²)</label>
+                <input type="number" id="populationDensity" name="populationDensity" min="0" step="1"
+                  value="<%= input.populationDensity || '' %>" placeholder="e.g. 1200" required />
+              </div>
+              <div class="form-row">
+                <label for="infrastructureScore">Infrastructure resilience (0–100)</label>
+                <input type="number" id="infrastructureScore" name="infrastructureScore" min="0" max="100" step="1"
+                  value="<%= input.infrastructureScore || '' %>" placeholder="e.g. 45" required />
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">Run damage model</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <% if (result && (result.label==='HIGH' || result.label==='CRITICAL' )) { %>
+        <div class="alert-banner">
+          <span class="alert-banner__badge">Live alert</span>
+          <span>
+            <span class="alert-banner__text-strong">
+              <%= result.label %> damage risk
+            </span>
+            detected for <span class="alert-banner__text-strong">
+              <%= result.disasterName %>
+            </span>
+            at this scenario location.
+          </span>
+        </div>
+        <% } %>
+
+          <% if (result) { %>
+            <section class="live-risk-map model-results">
+              <div class="live-risk-map__header">
+                <h2>Scenario result — <%= result.disasterName %>
+                </h2>
+                <p>
+                  Estimated damage risk and timing window based on the inputs
+                  you provided.
+                </p>
+              </div>
+              <div class="live-prediction-card">
+                <div class="live-prediction-card__left">
+                  <div class="live-prediction-title">Damage risk index</div>
+                  <div class="live-prediction-sub">
+                    Risk level: <strong>
+                      <%= result.label %>
+                    </strong> · Composite score
+                    <strong>
+                      <%= result.score %>/100
+                    </strong>
+                  </div>
+                  <div class="live-prediction-sub">
+                    Expected impact window: <strong>
+                      <%= result.windowText %>
+                    </strong>
+                  </div>
+                  <% if (result.latitude && result.longitude) { %>
+                    <div class="live-prediction-sub">
+                      Location used: <strong>
+                        <%= result.latitude %>, <%= result.longitude %>
+                      </strong>
+                    </div>
+                    <% } %>
+                </div>
+                <div class="live-prediction-card__right">
+                  <div class="live-prediction-metric">
+                    <div class="live-prediction-metric-label">Disaster type</div>
+                    <div class="live-prediction-metric-value">
+                      <%= result.disasterName %>
+                    </div>
+                  </div>
+                  <div class="live-prediction-metric">
+                    <div class="live-prediction-metric-label">Model score</div>
+                    <div class="live-prediction-metric-value">
+                      <% if (typeof result.mlConfidence==='number' ) { %>
+                        <%= Math.round(result.mlConfidence) %>% confidence
+                          <% } else { %>
+                            <%= result.score %>/100
+                              <% } %>
+                    </div>
+                  </div>
+                  <% if (result.mlError) { %>
+                    <div class="live-prediction-metric">
+                      <div class="live-prediction-metric-label">Model status</div>
+                      <div class="live-prediction-metric-value">
+                        <%= result.mlError %>
+                      </div>
+                    </div>
+                    <% } %>
+                </div>
+              </div>
+              <% if (result.latitude && result.longitude) { %>
+                <div class="damage-map-wrapper">
+                  <div class="damage-map-header">Location risk heatmap</div>
+                  <div id="damage-map-view" data-lat="<%= result.latitude %>" data-lon="<%= result.longitude %>"
+                    data-label="<%= result.label %>"></div>
+                  <div class="damage-map-legend">
+                    <span class="legend-dot legend-low"></span> Low
+                    <span class="legend-dot legend-mod"></span> Moderate
+                    <span class="legend-dot legend-high"></span> High
+                    <span class="legend-dot legend-crit"></span> Critical
+                  </div>
+                </div>
+                <% } %>
+            </section>
+            <% } %>
+  </div>
+</body>
+
+</html>

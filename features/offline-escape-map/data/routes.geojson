@@ -1,0 +1,105 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [76.0, 33.0], [76.5, 32.5], [77.0, 32.0], [77.2, 31.5], [77.2090, 28.6139]
+        ]
+      },
+      "properties": { "disaster_type": "earthquake", "route_name": "Kashmir Valley → Delhi Shelter", "from_zone": "Kashmir–Himachal Seismic Zone V", "to_shelter": "NDMA Emergency Shelter Delhi" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [70.0, 22.5], [71.0, 22.0], [72.0, 21.0], [73.0, 19.5], [73.8567, 18.5204]
+        ]
+      },
+      "properties": { "disaster_type": "earthquake", "route_name": "Kutch → Pune School Shelter", "from_zone": "Kutch–Saurashtra Seismic Zone V", "to_shelter": "Pune District School Shelter" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [91.0, 26.0], [91.5, 26.0], [91.7362, 26.1445]
+        ]
+      },
+      "properties": { "disaster_type": "earthquake", "route_name": "Northeast Zone → Guwahati Camp", "from_zone": "Northeast India Seismic Zone V", "to_shelter": "Guwahati Relief Camp" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [85.5, 20.0], [85.7, 20.2], [85.8245, 20.2961]
+        ]
+      },
+      "properties": { "disaster_type": "cyclone", "route_name": "Odisha Coast → Puri Cyclone Shelter", "from_zone": "Odisha Coastal Cyclone Belt", "to_shelter": "Odisha Cyclone Shelter Puri" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [82.0, 16.5], [82.5, 17.0], [83.0158, 17.6868]
+        ]
+      },
+      "properties": { "disaster_type": "cyclone", "route_name": "AP Corridor → Vizag Shelter", "from_zone": "Andhra Pradesh Cyclone Corridor", "to_shelter": "Visakhapatnam Cyclone Shelter" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [88.0, 21.5], [88.2, 22.0], [88.3639, 22.5726]
+        ]
+      },
+      "properties": { "disaster_type": "cyclone", "route_name": "WB Coast → Salt Lake Stadium", "from_zone": "West Bengal Coastal Zone", "to_shelter": "Salt Lake Stadium Shelter" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [92.0, 26.0], [91.8, 26.1], [91.7362, 26.1445]
+        ]
+      },
+      "properties": { "disaster_type": "flood", "route_name": "Brahmaputra Basin → Guwahati Camp", "from_zone": "Assam–Brahmaputra Floodplain", "to_shelter": "Guwahati Relief Camp" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [86.0, 25.5], [85.5, 25.5], [85.1376, 25.6093]
+        ]
+      },
+      "properties": { "disaster_type": "flood", "route_name": "Kosi Basin → Patna Shelter", "from_zone": "Bihar–Kosi River Basin", "to_shelter": "Patna Flood Shelter" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [81.5, 26.5], [81.0, 26.7], [80.9462, 26.8467]
+        ]
+      },
+      "properties": { "disaster_type": "flood", "route_name": "Ganga Plain → Lucknow Center", "from_zone": "Uttar Pradesh–Ganga Floodplain", "to_shelter": "Lucknow Emergency Center" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [88.5, 23.0], [88.4, 22.8], [88.3639, 22.5726]
+        ]
+      },
+      "properties": { "disaster_type": "flood", "route_name": "Bengal Delta → Salt Lake Shelter", "from_zone": "Bengal Delta Flood Zone", "to_shelter": "Salt Lake Stadium Shelter" }
+    }
+  ]
+}
