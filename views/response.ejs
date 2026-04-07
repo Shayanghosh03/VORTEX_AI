@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= title %></title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/geonex_logo.png" />
+  <title>
+    <%= title %>
+  </title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/geonex_logo.png" />
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <script src="/javascripts/main.js" defer></script>
 </head>
+
 <body>
   <div class="wrapper">
     <div class="grid-bg"></div>
@@ -16,25 +20,47 @@
     <div class="scan-ring"></div>
     <div class="scan-ring"></div>
 
-    <%- include('partials/Navbar', { activePage: 'response', currentUser }) %>
 
-    <main>
-      <div class="page-header">
-        <div class="alert-badge"><div class="dot"></div> RESPONSE</div>
-        <h1 class="hero-title">Disaster <span style="color:#00b4ff;">Response</span></h1>
-        <p class="hero-sub">Coordinate field teams, track deployments, and manage incident response.</p>
-      </div>
+    <%- include('partials/Navbar', { activePage: 'response' , currentUser }) %>
 
-      <div style="display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap;">
-        <a href="/response/tasks" class="btn btn-primary">Task Queue</a>
-        <a href="/response-console" class="btn btn-outline">Response Console</a>
-        <a href="/response/tasks/export" class="btn btn-outline">Export Tasking Log</a>
+      <div class="hero">
+        <div class="left-panel panel-animate">
+          <div class="alert-badge">
+            <div class="dot"></div>
+            RESPONSE — LIVE TASKING
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-1">Coordinate faster.</span>
+            <span class="hero-line hero-line-2 accent">Save more lives.</span>
+            <span class="hero-line hero-line-3">One pane of glass<span class="accent2">.</span></span>
+          </h1>
+          <p class="subtitle subtitle-animated">
+            PRIORITIZE TEAMS, RESOURCES AND ROUTES WITH AI-GENERATED PLAYBOOKS,
+            INCIDENT QUEUES AND REAL-TIME FIELD TELEMETRY.
+          </p>
+          <div class="cta-row">
+            <a href="/response-console" class="btn-primary">Open Response Console</a>
+            <a href="/response/tasks" class="btn-secondary">View Task Queue</a>
+          </div>
+        </div>
+        <div class="right-panel panel-animate-delayed">
+          <div class="map-container mini-panel">
+            <div class="zone-legend">
+              <div class="legend-title">Deployment status</div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background:#22c55e;"></div>Teams on site
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background:#eab308;"></div>En route
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background:#ef4444;"></div>Awaiting dispatch
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="panel panel-animate" style="margin-top:2rem; padding:2rem; color:rgba(200,220,240,0.5);">
-        <p style="font-size:12px; letter-spacing:2px; text-transform:uppercase; text-align:center;">Select a module above to begin</p>
-      </div>
-    </main>
   </div>
 </body>
+
 </html>

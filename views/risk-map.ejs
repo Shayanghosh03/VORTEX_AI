@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= title %></title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/geonex_logo.png" />
+  <title>
+    <%= title %>
+  </title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/geonex_logo.png" />
   <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script src="/javascripts/main.js" defer></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <script src="/javascripts/risk-map.js" defer></script>
 </head>
+
 <body>
   <div class="wrapper">
     <div class="grid-bg"></div>
@@ -16,19 +25,118 @@
     <div class="scan-ring"></div>
     <div class="scan-ring"></div>
 
-    <%- include('partials/Navbar', { activePage: 'risk-map', currentUser }) %>
 
-    <main>
-      <div class="page-header">
-        <div class="alert-badge"><div class="dot"></div> RISK MAP</div>
-        <h1 class="hero-title">Threat Zone <span style="color:#00b4ff;">Mapping</span></h1>
-        <p class="hero-sub">Real-time geospatial risk assessment across active disaster corridors.</p>
+    <%- include('partials/Navbar', { activePage: 'risk-map' , currentUser }) %>
+
+
+      <div class="hero">
+        <div class="left-panel panel-animate">
+          <div class="alert-badge">
+            <div class="dot"></div>
+            RISK MAP — LIVE LAYERS
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-1">See impact.</span>
+            <span class="hero-line hero-line-2 accent">Before it hits.</span>
+            <span class="hero-line hero-line-3">Every zone, every layer<span class="accent2">.</span></span>
+          </h1>
+          <p class="subtitle subtitle-animated">
+            INTERACTIVE DAMAGE-RISK HEATMAPS WITH POPULATION, CRITICAL INFRASTRUCTURE
+            AND EVACUATION ROUTES OVERLAID IN REAL TIME.
+          </p>
+          <div class="cta-row">
+            <button class="btn-primary" id="open-risk-map">Open Live Risk Map</button>
+            <button class="btn-secondary" id="configure-layers">Configure Layers</button>
+          </div>
+        </div>
+        <div class="right-panel panel-animate-delayed">
+          <div class="map-container mini-panel">
+            <!-- static preview still uses stylized svg map -->
+            <%- include('partials/map-svg'); %>
+          </div>
+        </div>
       </div>
 
-      <div class="panel panel-animate" style="margin-top:2rem; padding:2rem; text-align:center; color:rgba(200,220,240,0.5);">
-        <p style="font-size:12px; letter-spacing:2px; text-transform:uppercase;">Risk map visualisation coming soon</p>
-      </div>
-    </main>
+      <!-- Live interactive risk map section (cyclone-focused surface) -->
+      <section id="live-risk-map-section" class="live-risk-map" data-hazard="cyclone">
+        <div class="live-risk-map__header">
+          <div id="live-alert-banner" class="alert-banner" style="display:none;">
+            <span class="alert-banner__badge">Live alert</span>
+            <span id="live-alert-text"></span>
+          </div>
+          <span class="live-pill">Live layer</span>
+          <h2>Bay of Bengal · Cyclone Mocha risk surface</h2>
+          <p>
+            Zoom and pan the live risk surface powered by AI-derived impact zones
+            and coastal population exposure.
+          </p>
+        </div>
+        <div class="live-risk-map__body">
+          <div id="risk-map-view"></div>
+          <aside class="live-risk-map__legend">
+            <div class="legend-title">Risk intensity</div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#ff2010;"></div>Critical impact
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#ff8800;"></div>Severe warning
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#ffcc00;"></div>Watch zone
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#00b4ff;"></div>Coastal city node
+            </div>
+
+            <div class="layer-controls">
+              <div class="layer-controls__title">Configure layers</div>
+              <label class="layer-toggle">
+                <input type="checkbox" id="toggle-critical" checked />
+                <span>Critical impact</span>
+              </label>
+              <label class="layer-toggle">
+                <input type="checkbox" id="toggle-severe" checked />
+                <span>Severe warning</span>
+              </label>
+              <label class="layer-toggle">
+                <input type="checkbox" id="toggle-watch" checked />
+                <span>Watch zone</span>
+              </label>
+              <label class="layer-toggle">
+                <input type="checkbox" id="toggle-cities" checked />
+                <span>Coastal cities</span>
+              </label>
+              <label class="layer-toggle">
+                <input type="checkbox" id="toggle-me" checked />
+                <span>My live location</span>
+              </label>
+              <div class="manual-location">
+                <label>
+                  <input type="checkbox" id="manual-location" />
+                  <span>Manual location mode: click on map to set my location</span>
+                </label>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <div class="live-prediction-card" id="live-prediction-card">
+          <div class="live-prediction-card__left">
+            <div class="live-prediction-title">Live location prediction</div>
+            <div class="live-prediction-sub" id="prediction-risk-label">Waiting for live location signal…</div>
+          </div>
+          <div class="live-prediction-card__right">
+            <div class="live-prediction-metric">
+              <div class="live-prediction-metric-label">Disaster type</div>
+              <div class="live-prediction-metric-value" id="prediction-disaster-name">Not yet classified</div>
+            </div>
+            <div class="live-prediction-metric">
+              <div class="live-prediction-metric-label">Model confidence</div>
+              <div class="live-prediction-metric-value" id="prediction-confidence">–</div>
+            </div>
+          </div>
+        </div>
+      </section>
   </div>
 </body>
+
 </html>
