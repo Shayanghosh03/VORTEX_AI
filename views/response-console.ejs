@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/geonex_logo.png" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <script src="/javascripts/main.js" defer></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="grid-bg"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+
+    <%- include('partials/Navbar', { activePage: 'response', currentUser }) %>
+
+    <main>
+      <div class="page-header">
+        <div class="alert-badge"><div class="dot"></div> RESPONSE CONSOLE</div>
+        <h1 class="hero-title">Ops <span style="color:#00b4ff;">Console</span></h1>
+        <p class="hero-sub">Live command and control feed for active incident response operations.</p>
+      </div>
+
+      <div class="panel panel-animate" style="margin-top:2rem; padding:1.5rem; font-family:'Share Tech Mono',monospace; font-size:11px; color:rgba(200,220,240,0.7); line-height:1.8;">
+        <p style="color:#00b4ff; margin-bottom:0.5rem;">> GEONEX RESPONSE CONSOLE — ACTIVE</p>
+        <p>> Zone Delta-3: Surge team deployed — ETA 22 min</p>
+        <p>> Zone Bridge North: Flood barriers in transit</p>
+        <p>> Zone Sector 7: Landslide assessment crew staging</p>
+        <p>> Zone Coastal ring: All clear confirmed — C-221 closed</p>
+        <p style="color:rgba(200,220,240,0.3);">> Awaiting next field update...</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

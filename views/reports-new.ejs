@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/geonex_logo.png" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <script src="/javascripts/main.js" defer></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="grid-bg"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+
+    <%- include('partials/Navbar', { activePage: 'reports', currentUser }) %>
+
+    <main>
+      <div class="page-header">
+        <div class="alert-badge"><div class="dot"></div> NEW REPORT</div>
+        <h1 class="hero-title">Generate <span style="color:#00b4ff;">Report</span></h1>
+        <p class="hero-sub">Configure and export a structured incident report.</p>
+      </div>
+
+      <form method="POST" action="/reports/new" class="panel panel-animate" style="margin-top:2rem; padding:2rem; display:flex; flex-direction:column; gap:1rem;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+          <div>
+            <label style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#00b4ff; display:block; margin-bottom:4px;">Report Title</label>
+            <input name="title" type="text" placeholder="e.g. Cyclone Mocha — Post Impact" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(0,180,255,0.2); color:#fff; padding:8px 12px; font-family:'Share Tech Mono',monospace; font-size:12px; box-sizing:border-box;" />
+          </div>
+          <div>
+            <label style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#00b4ff; display:block; margin-bottom:4px;">Incident</label>
+            <input name="incident" type="text" placeholder="e.g. Cyclone Mocha" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(0,180,255,0.2); color:#fff; padding:8px 12px; font-family:'Share Tech Mono',monospace; font-size:12px; box-sizing:border-box;" />
+          </div>
+          <div>
+            <label style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#00b4ff; display:block; margin-bottom:4px;">Region</label>
+            <input name="region" type="text" placeholder="e.g. Bay of Bengal" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(0,180,255,0.2); color:#fff; padding:8px 12px; font-family:'Share Tech Mono',monospace; font-size:12px; box-sizing:border-box;" />
+          </div>
+          <div>
+            <label style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#00b4ff; display:block; margin-bottom:4px;">Time Window</label>
+            <select name="window" style="width:100%; background:#0a0f1a; border:1px solid rgba(0,180,255,0.2); color:#fff; padding:8px 12px; font-family:'Share Tech Mono',monospace; font-size:12px; box-sizing:border-box;">
+              <option value="event">Full Event</option>
+              <option value="24h">Last 24h</option>
+              <option value="72h">Last 72h</option>
+              <option value="7d">Last 7 days</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#00b4ff; display:block; margin-bottom:4px;">Format</label>
+            <select name="format" style="width:100%; background:#0a0f1a; border:1px solid rgba(0,180,255,0.2); color:#fff; padding:8px 12px; font-family:'Share Tech Mono',monospace; font-size:12px; box-sizing:border-box;">
+              <option value="pdf">PDF</option>
+              <option value="json">JSON</option>
+              <option value="csv">CSV</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#00b4ff; display:block; margin-bottom:4px;">Audience</label>
+            <select name="audience" style="width:100%; background:#0a0f1a; border:1px solid rgba(0,180,255,0.2); color:#fff; padding:8px 12px; font-family:'Share Tech Mono',monospace; font-size:12px; box-sizing:border-box;">
+              <option value="agency">Agency</option>
+              <option value="government">Government</option>
+              <option value="public">Public</option>
+              <option value="internal">Internal</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#00b4ff; display:block; margin-bottom:4px;">Notes</label>
+          <textarea name="notes" rows="3" placeholder="Additional notes or context..." style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(0,180,255,0.2); color:#fff; padding:8px 12px; font-family:'Share Tech Mono',monospace; font-size:12px; box-sizing:border-box; resize:vertical;"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Generate &amp; Download</button>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
+</html>

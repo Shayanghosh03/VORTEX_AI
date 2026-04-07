@@ -147,7 +147,7 @@ router.post("/damage-model", requireAuth, function (req, res, next) {
   });
 
   const mlHost = process.env.ML_HOST || "127.0.0.1";
-  const mlPort = parseInt(process.env.ML_PORT, 10) || 5000;
+  const mlPort = parseInt(process.env.ML_PORT, 10) || 8000;
 
   const options = {
     hostname: mlHost,
@@ -433,7 +433,7 @@ router.post("/api/disaster-predict", requireAuth, function (req, res, next) {
   });
 
   var mlHost = process.env.ML_HOST || "127.0.0.1";
-  var mlPort = parseInt(process.env.ML_PORT, 10) || 5000;
+  var mlPort = parseInt(process.env.ML_PORT, 10) || 8000;
 
   var options = {
     hostname: mlHost,

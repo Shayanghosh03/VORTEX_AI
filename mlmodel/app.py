@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import joblib
 import numpy as np
 import pandas as pd
+import os
 
 
 app = Flask(__name__)
@@ -527,5 +528,6 @@ def predict_disaster() -> tuple[dict, int]:
 
 
 if __name__ == "__main__":
-	# Example: FLASK_ENV=development flask run - or just python app.py
-	app.run(host="0.0.0.0", port=5000, debug=True)
+	# Port can be overridden via ML_PORT environment variable (default 8000 for hosting platforms)
+	port = int(os.environ.get('ML_PORT', 8000))
+	app.run(host="0.0.0.0", port=port, debug=True)

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/geonex_logo.png" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <script src="/javascripts/main.js" defer></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="grid-bg"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+
+    <%- include('partials/Navbar', { activePage: 'response', currentUser }) %>
+
+    <main>
+      <div class="page-header">
+        <div class="alert-badge"><div class="dot"></div> RESPONSE</div>
+        <h1 class="hero-title">Disaster <span style="color:#00b4ff;">Response</span></h1>
+        <p class="hero-sub">Coordinate field teams, track deployments, and manage incident response.</p>
+      </div>
+
+      <div style="display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap;">
+        <a href="/response/tasks" class="btn btn-primary">Task Queue</a>
+        <a href="/response-console" class="btn btn-outline">Response Console</a>
+        <a href="/response/tasks/export" class="btn btn-outline">Export Tasking Log</a>
+      </div>
+
+      <div class="panel panel-animate" style="margin-top:2rem; padding:2rem; color:rgba(200,220,240,0.5);">
+        <p style="font-size:12px; letter-spacing:2px; text-transform:uppercase; text-align:center;">Select a module above to begin</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

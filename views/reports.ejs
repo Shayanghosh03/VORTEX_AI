@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/geonex_logo.png" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <script src="/javascripts/main.js" defer></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="grid-bg"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+    <div class="scan-ring"></div>
+
+    <%- include('partials/Navbar', { activePage: 'reports', currentUser }) %>
+
+    <main>
+      <div class="page-header">
+        <div class="alert-badge"><div class="dot"></div> REPORTS</div>
+        <h1 class="hero-title">Incident <span style="color:#00b4ff;">Reports</span></h1>
+        <p class="hero-sub">Generate, review and export post-incident damage and response reports.</p>
+      </div>
+
+      <div style="display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap;">
+        <a href="/reports/new" class="btn btn-primary">New Report</a>
+        <a href="/reports/exports" class="btn btn-outline">All Exports</a>
+      </div>
+
+      <div class="panel panel-animate" style="margin-top:2rem; padding:2rem; color:rgba(200,220,240,0.5); text-align:center;">
+        <p style="font-size:12px; letter-spacing:2px; text-transform:uppercase;">No reports generated yet — create your first report above</p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

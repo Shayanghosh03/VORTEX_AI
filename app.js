@@ -35,7 +35,19 @@ var app = express();
 app.disable('x-powered-by');
 
 // [SECURITY] Security headers
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://unpkg.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com", "https://fonts.googleapis.com"],
+      imgSrc: ["'self'", "data:", "https://*.tile.openstreetmap.org", "https://unpkg.com"],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      workerSrc: ["'self'", "blob:"],
+    },
+  },
+}));
 
 // [SECURITY] Rate limiting — 100 requests per 15 minutes per IP
 var limiter = rateLimit({
